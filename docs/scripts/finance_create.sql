@@ -1,3 +1,12 @@
+CREATE TABLE IF NOT EXISTS  `user` (
+`id` INT(11) NOT NULL AUTO_INCREMENT,
+`user_id` VARCHAR (32) NULL,
+`email_id` VARCHAR(128) NULL,
+`password` VARCHAR(128) NOT NULL,
+`mobile_number` VARCHAR(20) NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `fiscal_year` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `financial_year` VARCHAR(32) NOT NULL ,
@@ -24,10 +33,12 @@ CREATE TABLE IF NOT EXISTS `mf_schemes` (
 
 CREATE TABLE IF NOT EXISTS `mf_investment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
   `fiscal_id` INT(11) NOT NULL,
   `scheme_id` INT(11) NOT NULL,
   `purchased_on` datetime NOT NULL,
   `invested_on` datetime NOT NULL,
+  `created_on` datetime NOT NULL,
   `amount` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`fiscal_id`) REFERENCES `fiscal_year` (`id`),
