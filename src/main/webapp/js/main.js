@@ -1,12 +1,24 @@
 $(document).ready(function () {
-    var debug = true;
+    var debug = false;
+
+    var currentSideMenuId;
 
     function processSideMenuItemClick(id) {
-        var innerHtml = "<object type='text/html' data=" + id +".html ></object>";
-        if (debug) {
-            $("#status").append("<br> loaded "+id);
+        if(id != currentSideMenuId) {
+
+            // var innerHtml = "<object type='text/html' data=" + id +".html ></object>";
+            if (debug) {
+                $("#status").append("<br> loaded "+id);
+            }
+            // document.getElementById("container").innerHTML=innerHtml;
+            var htmlFile = id + ".html";
+            $('#container').attr('src', htmlFile);
+            currentSideMenuId = id;
+        } else {
+            if (debug) {
+                $("#status").append("<br> Already in "+id);
+            }
         }
-        document.getElementById("container").innerHTML=innerHtml;
     }
 
     $("#slidebar").on("click", "a", function(e) {
